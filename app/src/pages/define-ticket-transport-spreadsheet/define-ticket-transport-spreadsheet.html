@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit transport ticket</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Amount tickets</ion-label>
+    <ion-input type="number" placeholder="Amount tickets" [(ngModel)]="spreadsheet.ticketTransport.amountTicket"
+      (ionChange)="calc()"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>Value individual ticket</ion-label>
+    <ion-input type="number" placeholder="value ticket" [(ngModel)]="spreadsheet.ticketTransport.value"
+      (ionChange)="calc()"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>Percent of discount</ion-label>
+    <ion-input type="number" placeholder="percent discount" [(ngModel)]="spreadsheet.ticketTransport.percent"
+      (ionChange)="calc()"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>Amount</ion-label>
+    <ion-input type="number" placeholder="amount" [(ngModel)]="spreadsheet.ticketTransport.amount"></ion-input>
+  </ion-item>
+</ion-content>

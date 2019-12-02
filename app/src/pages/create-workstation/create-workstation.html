@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>create workstation</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">close</span>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input type="text" placeholder="Name" [(ngModel)]="workstation.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="amount employees" [(ngModel)]="workstation.employees"></ion-input>
+  </ion-item>
+  <br>
+  <button ion-button block outline (click)="create()">Create</button>
+</ion-content>

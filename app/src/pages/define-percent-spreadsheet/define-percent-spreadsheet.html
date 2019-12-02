@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Percent</ion-label>
+    <ion-input type="number" placeholder="Percent" [(ngModel)]="spreadsheet[index].percent" (ionChange)="calc()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Amount</ion-label>
+    <ion-input type="number" placeholder="Amount" [(ngModel)]="spreadsheet[index].amount">
+    </ion-input>
+  </ion-item>
+</ion-content>

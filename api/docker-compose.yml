@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  fix-mongodb-permissions:
+    image: "bitnami/mongodb:latest"
+    user: root
+    command: chown -R 1001:1001 /bitnami
+    volumes:
+      - "./mongo_data:/bitnami"
+
+  db-mongo:
+    image: "bitnami/mongodb"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_USERNAME=${MONGO_DB_USER}
+      - MONGODB_PASSWORD=${MONGO_DB_PASSWORD}
+      - MONGODB_DATABASE=${MONGO_DB_DATABASE}
+      - MONGODB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
+    volumes:
+      - ./mongo_data:/bitnami:rw
+    depends_on:
+      - fix-mongodb-permissions
+
+volumes:
+  mongo_data:

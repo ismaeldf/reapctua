@@ -1,0 +1,122 @@
+page-signin {
+  $transparent-white: rgba(255, 255, 255, 0.6);
+  $color: #000;
+
+  // This is just to make the header transparent and button/icon with white color
+  .toolbar-content,
+  span {
+    color: $color;
+  }
+  .toolbar-background,
+  ion-navbar,
+  ion-header {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  .header-md::after,
+  .toolbar-background-ios {
+    background-image: none;
+    border-bottom: 0;
+  }
+  // Footer
+  ion-footer {
+    height: 47px;
+  }
+  .footer {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    min-height: 47px;
+  }
+  .footer-md::before {
+    border-top: 1px solid $transparent-white;
+    background-image: none;
+  }
+  // Fullscreen animated rainbow gradient
+  ion-content {
+    background: #fff;
+  }
+
+  // Content
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .div-logo {
+    background: #fff;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    height: 200px;
+    position: relative;
+    width: 200px;
+  }
+  .logo {
+    height: 30%;
+    left: 0;
+    top: 0;
+    width: 25%;
+    margin-left: 34%;
+  }
+  // Input items
+  ion-item {
+    border-radius: 3px !important;
+    padding-left: 10px !important;
+    margin-bottom: 15px !important;
+    margin-bottom: 10px;
+    color: $color !important;
+    border-bottom: 1px solid !important;
+    border-color: $color !important;
+    font-size: 0.9em;
+  }
+  ::-webkit-input-placeholder {
+    color: $color !important;
+  }
+  .item-inner {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+  // --
+  .login-button {
+    text-transform: none;
+    border-radius: 3px !important;
+  }
+  .button-outline-md-light {
+    border-color: $color;
+    color: ibvendas;
+    background-color: transparent;
+  }
+  // Facebook icon
+  ion-icon {
+    padding-right: 10px;
+    font-size: 2.2rem;
+  }
+  // HR with text in the middle effect
+  .strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .strike > span {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .strike > span:before,
+  .strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: $transparent-white;
+  }
+  .strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+}

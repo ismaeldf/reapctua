@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>show resume</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-group *ngFor="let value of company.resume.workstations">
+      <ion-item-divider color="light">{{value.workstation.name}}</ion-item-divider>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col text-left>Month value</ion-col>
+            <ion-col text-right><b>{{helper.formatMoney(value.monthByEmployess)}}</b></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-left>Annual value</ion-col>
+            <ion-col text-right><b>{{helper.formatMoney(value.yearByEmployess)}}</b></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="light" text-center>Company totals</ion-item-divider>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col text-left>Month value</ion-col>
+            <ion-col text-right><b>{{helper.formatMoney(company.resume.monthByCompany)}}</b></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-left>Annual value</ion-col>
+            <ion-col text-right><b>{{helper.formatMoney(company.resume.yearByCompany)}}</b></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

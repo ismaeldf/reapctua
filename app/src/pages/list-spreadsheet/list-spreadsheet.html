@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>list spreadsheet</ion-title>
+
+    <ion-buttons ion-button icon-only end>
+      <button ion-button icon-only (click)="onCreateSpreadsheet()">
+        <ion-icon name="md-add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let spreadsheet of company.workstations[indexWorkstation].spreadsheets; let i = index">
+      <ion-item>
+        <ion-label (click)="showSpreadsheet(i)">{{spreadsheet.created_at | date:'dd/MM/yyyy - h:mm:ss' : 'UTC'}}
+        </ion-label>
+        <ion-toggle [ngModel]="spreadsheet.active" (ngModelChange)="changeActive($event, i)"></ion-toggle>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button icon-only color="danger" (click)="onDelete(i)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,453 @@
+<ion-toolbar>
+  <ion-segment [(ngModel)]="segment" (ionChange)="changeSegment()">
+    <ion-segment-button value="one">1 Módulo</ion-segment-button>
+    <ion-segment-button value="two">2 Módulo</ion-segment-button>
+    <ion-segment-button value="three">3 Módulo</ion-segment-button>
+    <ion-segment-button value="four">4 Módulo</ion-segment-button>
+    <ion-segment-button value="five">5 Módulo</ion-segment-button>
+    <ion-segment-button value="six">6 Módulo</ion-segment-button>
+    <ion-segment-button value="resume">Resumo</ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+
+<div [hidden]="segment != 'one'">
+  <ion-item>
+    <ion-label>
+      <b>Composição da Remuneração</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>A - Salário-Base</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].baseSalary"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>B - Adicional de Periculosidade</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].hazardSupplement">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>C - Adicional de Insalubridade</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].hazardPay"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>D - Adicional Noturno</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].additionalNight"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>E - Adicional de Hora Noturna Reduzida</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].reducedNightTimeAdditional">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>F - Outros (especificar)</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].compensationBreakdownOthers">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>{{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleOne('init')}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'two'">
+  <ion-item>
+    <ion-label>
+      <b>Encargos e Benefícios Anuais, Mensais e Diários</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>
+      Submódulo 2.1 - 13º (décimo terceiro) Salário, Férias e Adicional de Férias
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="editPercent('thirteenthSalary')">
+    <ion-label stacked>A - 13º (décimo terceiro) Salário</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].thirteenthSalary.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('vacation')">
+    <ion-label stacked>B - Férias e Adicional de Férias</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].vacation.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('incidenceModuleTwo')">
+    <ion-label stacked>C - Indicidência Módulo</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].incidenceModuleTwo.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleTwoSubOne()}}</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>
+      Submódulo 2.2 - Encargos Previdenciários (GPS), Fundo de Garantia por Tempo de Serviço (FGTS) e outras
+      contribuições.
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="editPercent('inss')">
+    <ion-label stacked>A - INSS</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].inss.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('educationSalary')">
+    <ion-label stacked>B - Salário Educação</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].educationSalary.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('sat')">
+    <ion-label stacked>C - SAT</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].sat.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('sescAndSesi')">
+    <ion-label stacked>D - SESC ou SESI</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].sescAndSesi.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('senaiAndSenac')">
+    <ion-label stacked>E - SENAI - SENAC</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].senaiAndSenac.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('sebrae')">
+    <ion-label stacked>F - SEBRAE</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].sebrae.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('incra')">
+    <ion-label stacked>G - INCRA</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].incra.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('fgts')">
+    <ion-label stacked>H - FGTS</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].fgts.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleTwoSubTwo()}}</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>
+      Submódulo 2.3 - Benefícios Mensais e Diários.
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="editTicketTransport()">
+    <ion-label stacked>A - Transporte</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].ticketTransport.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editTicketFood()">
+    <ion-label stacked>B - Auxílio-Refeição/Alimentação</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].ticketFood.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>C - Medical Care</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].medicalCare"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>D - Outros (especificar)</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].moduleTwoSubThreeOthers">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleTwoSubThree()}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'three'">
+  <ion-item>
+    <ion-label>
+      <b>Provisão para Rescisão</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item (click)="editPercent('earlyWarning')">
+    <ion-label stacked>A - Aviso Prévio Indenizado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].earlyWarning.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('fgtsIncidence')">
+    <ion-label stacked>B - Incidência do FGTS sobre o Aviso Prévio Indenizado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].fgtsIncidence.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('fgtsPenalty')">
+    <ion-label stacked>C - Multa do FGTS e contribuição social sobre o Aviso Prévio Indenizado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].fgtsPenalty.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('earlyWarningWork')">
+    <ion-label stacked>D - Aviso Prévio Trabalhado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].earlyWarningWork.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('incidenceSubTwoAndTwo')">
+    <ion-label stacked>E - Incidência dos encargos do submódulo 2.2 sobre o Aviso Prévio Trabalhado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].incidenceSubTwoAndTwo.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('fgtsPenaltyWork')">
+    <ion-label stacked>F - Multa do FGTS e contribuição social sobre o Aviso Prévio Trabalhado</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].fgtsPenaltyWork.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleThree()}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'four'">
+  <ion-item>
+    <ion-label>
+      <b>Custo de Reposição do Profissional Ausente</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>
+      Submódulo 4.1 - Ausências Legais
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="editPercent('discountVacation')">
+    <ion-label stacked>A - Férias</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].discountVacation.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('legalAbsences')">
+    <ion-label stacked>B - Ausências Legais</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].legalAbsences.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('paternityLeave')">
+    <ion-label stacked>C - Licença-Paternidade</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].paternityLeave.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('absenceWorkAccident')">
+    <ion-label stacked>D - Ausência por acidente de trabalho</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].absenceWorkAccident.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('maternityLeave')">
+    <ion-label stacked>E - Afastamento Maternidade</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].maternityLeave.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('moduleFourSubOneOthers')">
+    <ion-label stacked>F - Outros (especificar)</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].moduleFourSubOneOthers.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleFourSubOne()}}</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>
+      Submódulo 4.2 - Intrajornada
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="editPercent('restFeedingInterval')">
+    <ion-label stacked>A - Intervalo para repouso e alimentação</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].restFeedingInterval.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('legalAbsencesIntrajorn')">
+    <ion-label stacked>B - Ausências Legais</ion-label>
+    <ion-input type="number"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].legalAbsencesIntrajorn.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleFourSubTwo()}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'five'">
+  <ion-item>
+    <ion-label>
+      <b>Insumos Diversos</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>A - Uniformes</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].uniforms"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>B - Materiais</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].materials"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>C - Equipamentos</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].equipments"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>D - Outros (especificar)</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [(ngModel)]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].moduleFiveOthers"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleFive()}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'six'">
+  <ion-item>
+    <ion-label>
+      <b>Custos Indiretos, Tributos e Lucro</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item (click)="editPercent('indirectCosts', 'sumModulesOneToFive', true)">
+    <ion-label stacked>A - Custos Indiretos</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].indirectCosts.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('profit', 'sumModulesOneToFive', true)">
+    <ion-label stacked>B - Lucro</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].profit.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('pis', 'formulaTributes', true)">
+    <ion-label stacked>C.1. PIS</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].pis.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('cofins', 'formulaTributes', true)">
+    <ion-label stacked>C.2. COFINS</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].cofins.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item (click)="editPercent('iss', 'formulaTributes', true)">
+    <ion-label stacked>C.3. ISS</ion-label>
+    <ion-input type="number" (ionChange)="changed()"
+      [value]="company.workstations[indexWorkstation].spreadsheets[indexSpreadsheet].iss.amount">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b>
+        {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleSix()}}</b>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div [hidden]="segment != 'resume'">
+  <ion-item>
+    <ion-label>
+      <b>Quadro resumo</b>
+    </ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label stacked>Módulo 1 - Composição da Remuneração</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleOne()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Módulo 2 - Encargos e Benefícios Anuais, Mensais e Diários</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleTwo()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Módulo 3 - Provisão para Rescisão</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleThree()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Módulo 4 - Custo de Reposição do Profissional Ausente</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleFour()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Módulo 5 - Insumos Diversos</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleFive()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Módulo 6 – Custos Indiretos, Tributos e Lucro</ion-label>
+    <ion-input type="number" disabled
+      [ngModel]="this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumModuleSix()">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-right">
+      <b> {{this.company.workstations[this.indexWorkstation].spreadsheets[this.indexSpreadsheet].sumAllModules()}}</b>
+    </ion-label>
+  </ion-item>
+</div>

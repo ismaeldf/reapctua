@@ -1,0 +1,32 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="transparent-header">
+  <div col-xl-6 offset-xl-3>
+    <div class="divLogo">
+      <img class="logo" src="assets/imgs/logo.png" />
+    </div>
+    <div padding>
+      <form [formGroup]="signinForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+        <ion-item>
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+        <button ion-button block outline type="submit" color="light" class="login-button">Login</button>
+      </form>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="footer">
+    <div (click)="onSignup()">
+      <span>Don't have account?
+        <strong>Click here</strong>.</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>
