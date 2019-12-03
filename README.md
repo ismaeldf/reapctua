@@ -103,15 +103,3 @@ ionic serve
 ### Alterar url da API
 
 Editar a variável baseUrl do arquivo /src/providers/api
-
-### Build
-
-```
-ionic cordova build browser --minifyjs --minifycss --optimizejs --prod
-```
-
-### Executando a aplicação em produção via PM2
-
-```
-pm2 start npm -- start --watch
-```
