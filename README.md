@@ -13,6 +13,10 @@
 
 https://nodejs.org/en/download/
 
+```
+  sudo apt-get install -y nodejs
+```
+
 ## Docker
 
 https://docs.docker.com/compose/install/
@@ -29,6 +33,17 @@ https://docs.docker.com/compose/install/
 npm install
 ```
 
+## Criando .env file
+
+```
+cp .env.example .env
+```
+
+Para produção alterar as seguintes variáveis para:
+HOST=0.0.0.0
+NODE_ENV=production
+APP_URL=http://0.0.0.0:3333
+
 ## Executando o docker
 
 ```
@@ -41,10 +56,18 @@ docker-compose up -d
 adonis migration:run
 ```
 
-## Executando a aplicação
+## Executando a aplicação em desenvolvimento
 
 ```
 adonis serve --dev
+```
+
+## Ou Executando a aplicação em produção via PM2
+
+```
+sudo npm install -g pm2 --watch
+
+pm2 start server.js
 ```
 
 # Repactua Frontend
@@ -56,10 +79,6 @@ adonis serve --dev
 - cordova last version
 
 ## Instalação de requisitos
-
-## Node + npm
-
-https://nodejs.org/en/download/
 
 ## ionic + cordova
 
@@ -73,8 +92,26 @@ https://nodejs.org/en/download/
 npm install
 ```
 
-## Executando a aplicação
+## Executando a aplicação em desenvolvimento
 
 ```
 ionic serve
+```
+
+## Executando a aplicação em produção
+
+### Alterar url da API
+
+Editar a variável baseUrl do arquivo /src/providers/api
+
+### Build
+
+```
+ionic cordova build browser --minifyjs --minifycss --optimizejs --prod
+```
+
+### Executando a aplicação em produção via PM2
+
+```
+pm2 start npm -- start --watch
 ```
