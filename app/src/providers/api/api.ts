@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-  private baseUrl = 'http://localhost:3333';
+  private baseUrl = 'http://167.172.113.215:3333/';
+  // private baseUrl = 'http://localhost:3333';
+
   private url = '';
 
   constructor(public urlSegment?: string, public http?: HttpClient) {
