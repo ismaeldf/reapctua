@@ -1,4 +1,4 @@
-# Repactua API
+# Repactua
 Aplicação que armazena alterações realizadas em "planilhas" de repactuação, que são utilizadas para alteração dos valores em contratos regidos pela Lei 8.666 de 1993. 
 Desenvolvida em nos frameworks Ionic e Adonis.
 
