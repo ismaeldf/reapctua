@@ -28,6 +28,7 @@ module.exports = {
       password: Env.get('MONGO_DB_PASSWORD', ''),
       database: Env.get('MONGO_DB_DATABASE', 'adonis'),
       options: {
+        useUnifiedTopology: true
         // replicaSet: Env.get('DB_REPLICA_SET', '')
         // ssl: Env.get('DB_SSL, '')
         // connectTimeoutMS: Env.get('DB_CONNECT_TIMEOUT_MS', 15000),
