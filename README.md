@@ -3,6 +3,8 @@
 Aplicação que armazena alterações realizadas em "planilhas" de repactuação, que são utilizadas para alteração dos valores em contratos regidos pela Lei 8.666 de 1993.
 Desenvolvida em nos frameworks Ionic e Adonis.
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8_lu444qwbo/0.jpg)](https://www.youtube.com/watch?v=8_lu444qwbo)
+
 ## Requisitos
 
 - Node.js >= 8.0.0
