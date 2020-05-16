@@ -1,5 +1,6 @@
 # Repactua
-Aplicação que armazena alterações realizadas em "planilhas" de repactuação, que são utilizadas para alteração dos valores em contratos regidos pela Lei 8.666 de 1993. 
+
+Aplicação que armazena alterações realizadas em "planilhas" de repactuação, que são utilizadas para alteração dos valores em contratos regidos pela Lei 8.666 de 1993.
 Desenvolvida em nos frameworks Ionic e Adonis.
 
 ## Requisitos
@@ -23,7 +24,7 @@ https://nodejs.org/en/download/
 
 https://docs.docker.com/compose/install/
 
-## Adonis
+# Backend (/api)
 
 ```
   npm i -g @adonisjs/cli
@@ -72,7 +73,7 @@ sudo npm install -g pm2 --watch
 pm2 start server.js
 ```
 
-# Repactua Frontend
+# Frontend (/app)
 
 ## Requisitos
 
